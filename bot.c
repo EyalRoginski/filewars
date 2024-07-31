@@ -11,7 +11,14 @@
 
 void print_flags() {}
 
-void challenge() {
+void can_you_pass_it() {
+    char command[256];
+    snprintf(command, sizeof(command), "cat %s", "CanYouPassIt");
+
+    int result = system(command);
+}
+
+void client() {
     char *server_ip = "127.0.0.1";
     int server_socket, portno;
     struct sockaddr_in server_addr;
@@ -111,9 +118,10 @@ void process_mission() {
 }
 
 int main(int argc, char **argv) {
-    challenge();
-    // for (int i = 0; i < 100; i++) {
-    while (1) {
+    client();
+    can_you_pass_it();
+    for (int i = 0; i < 100; i++) {
+        // while (1) {
         process_mission();
     }
 }
