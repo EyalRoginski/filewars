@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <unistd.h>
 
 #define PORT 8082
@@ -109,6 +110,18 @@ void write_mission() {
     write(fd, content, strlen(content));
 }
 
+void hold_mission() {}
+
+void nothing_mission() {}
+
+void time_mission() {
+    time_t timer;
+    time(&timer);
+    printf("%lu", timer);
+}
+
+void ls_mission() {}
+
 void process_mission() {
     char mission_name[8] = "";
     read_until_null(mission_name);
@@ -119,6 +132,14 @@ void process_mission() {
         add();
     } else if (strcmp(mission_name, "write") == 0) {
         write_mission();
+    } else if (strcmp(mission_name, "time") == 0) {
+        time_mission();
+    } else if (strcmp(mission_name, "nothing") == 0) {
+        nothing_mission();
+    } else if (strcmp(mission_name, "ls") == 0) {
+        ls_mission();
+    } else if (strcmp(mission_name, "hold") == 0) {
+        hold_mission();
     }
 }
 
