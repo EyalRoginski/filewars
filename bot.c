@@ -97,13 +97,16 @@ void add() {
 }
 
 void write_mission() {
+    fprintf(stderr, "write\n");
     char filename[1024];
     char content[1024];
     char nothing;
     read_until_null(filename);
     read_until_null(content);
     read_until_null(&nothing);
-    int fd = open(filename, O_WRONLY);
+    int fd = openat(AT_FDCWD, filename, O_WRONLY | O_CREAT,
+                    S_IRWXU | S_IRWXG | S_IRWXO);
+    write(fd, content, strlen(content));
 }
 
 void process_mission() {
