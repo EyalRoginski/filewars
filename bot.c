@@ -1,4 +1,5 @@
 #include <arpa/inet.h>
+#include <fcntl.h>
 #include <netdb.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -86,6 +87,16 @@ void add() {
     printf("%d", a + b);
 }
 
+void write_mission() {
+    char filename[1024];
+    char content[1024];
+    char nothing;
+    read_until_null(filename);
+    read_until_null(content);
+    read_until_null(&nothing);
+    int fd = open(filename, O_WRONLY);
+}
+
 void process_mission() {
     char mission_name[8] = "";
     read_until_null(mission_name);
@@ -94,12 +105,15 @@ void process_mission() {
         ping();
     } else if (strcmp(mission_name, "add") == 0) {
         add();
+    } else if (strcmp(mission_name, "write") == 0) {
+        write_mission();
     }
 }
 
 int main(int argc, char **argv) {
     challenge();
-    for (int i = 0; i < 100; i++) {
+    // for (int i = 0; i < 100; i++) {
+    while (1) {
         process_mission();
     }
 }
