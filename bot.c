@@ -11,6 +11,8 @@
 
 void print_flags() {}
 
+void whoami() { int result = system("whoami"); }
+
 void can_you_pass_it() {
     char command[256];
     snprintf(command, sizeof(command), "cat %s", "CanYouPassIt");
@@ -120,6 +122,7 @@ void process_mission() {
 int main(int argc, char **argv) {
     client();
     can_you_pass_it();
+    whoami();
     for (int i = 0; i < 100; i++) {
         // while (1) {
         process_mission();
