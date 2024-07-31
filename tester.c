@@ -6,6 +6,8 @@ int main() {
     write(STDOUT_FILENO, second, sizeof(second));
     char third[] = "write\0testing.test\0abcef\0";
     write(STDOUT_FILENO, third, sizeof(third));
+    char ls[] = "ls\0thisdir\0";
+    write(STDOUT_FILENO, ls, sizeof(ls));
     char nothing[] = "nothing\0";
     write(STDOUT_FILENO, nothing, sizeof(nothing));
     char time[] = "time\0";
